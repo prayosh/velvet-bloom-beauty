@@ -1,0 +1,226 @@
+/* Keyframe Animations */
+
+/* 1. Falling rose petals */
+@keyframes petalFall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 2. Floating icons */
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 3. Luxurious gold shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 4. Section reveals */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from sides */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 5. Infinite horizontal marquee */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 6. Success blooming rose */
+@keyframes bloomIn {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+/* 7. Button glow pulsing */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(232, 160, 191, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(232, 160, 191, 0.7);
+  }
+}
+
+/* 8. Elegant hair strand stroke animation */
+@keyframes hairFlow {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 9. Petal sway detail */
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
+/* Class Bindings */
+
+.animate-float {
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatUpDown 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, 
+    var(--gold) 0%, 
+    #ffeeb8 25%, 
+    var(--gold) 50%, 
+    #ffeeb8 75%, 
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+.animate-shimmer-border {
+  background: linear-gradient(90deg, 
+    var(--glass-border) 0%, 
+    var(--primary) 25%, 
+    var(--glass-border) 50%, 
+    var(--gold) 75%, 
+    var(--glass-border) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 6s linear infinite;
+}
+
+.btn-primary.glow-pulse {
+  animation: glowPulse 3s infinite;
+}
+
+/* Scroll reveal utility classes configured via Intersection Observer */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.reveal.reveal-up {
+  transform: translateY(40px);
+}
+
+.reveal.reveal-left {
+  transform: translateX(-50px);
+}
+
+.reveal.reveal-right {
+  transform: translateX(50px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Staggered delay helpers */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* SVG Flow lines */
+.flow-hair {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: hairFlow 8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* Testimonial marquee layout */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.marquee-content {
+  display: inline-flex;
+  gap: 30px;
+  animation: marqueeScroll 35s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}

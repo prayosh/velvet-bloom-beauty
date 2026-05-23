@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore Velvet Bloom's premium ladies salon services in Jamshedpur: hair styling, advanced skin facials, luxury manicures, gel nails, professional makeup, and precision waxing.">
+  <title>Our Services | Velvet Bloom Ladies Parlour Jamshedpur</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="responsive.css">
+  
+  <style>
+    /* Service Card Custom Sub-Styles */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .service-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .service-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .service-card-icon-wrapper {
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      background: rgba(232, 160, 191, 0.04);
+      border: 1px solid rgba(232, 160, 191, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: var(--transition-smooth);
+    }
+    
+    .service-card:hover .service-card-icon-wrapper {
+      background: rgba(232, 160, 191, 0.1);
+      border-color: var(--primary);
+      transform: scale(1.08) rotate(5deg);
+    }
+    
+    .service-card-icon-wrapper svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--primary);
+      transition: var(--transition-smooth);
+    }
+
+    .service-card:hover .service-card-icon-wrapper svg {
+      fill: var(--gold);
+    }
+    
+    .service-card-price {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(212, 168, 83, 0.1);
+    }
+    
+    .service-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    
+    .service-card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    
+    .service-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 20px;
+      margin-top: auto;
+    }
+    
+    .service-card-duration {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .service-card-duration svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+    
+    /* Interactive sliding line filters */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 15px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 10px 22px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
+      z-index: 5;
+    }
+    
+    .tab-btn.active, .tab-btn:hover {
+      color: var(--primary);
+    }
+    
+    .tab-underline {
+      position: absolute;
+      bottom: -1px;
+      height: 2px;
+      background: var(--primary);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 0 10px var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="header-nav">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 100 100">
+            <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+            <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+            <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+            <circle cx="50" cy="28" r="3" fill="#d4a853" />
+          </svg>
+          VELVET<span>BLOOM</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="hamburger" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div class="mobile-drawer">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <!-- Sparkling ornaments -->
+        <svg class="sparkle-svg sparkle-1" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>
+        <svg class="sparkle-svg sparkle-2" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>
+
+        <!-- Custom Page Hero Illustration: Scissors + Blooming Rose -->
+        <svg viewBox="0 0 100 100" class="hero-svg-icon">
+          <path d="M35 55 L65 25" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M65 55 L35 25" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="30" cy="60" r="8" stroke="var(--primary)" stroke-width="2" fill="none"/>
+          <circle cx="70" cy="60" r="8" stroke="var(--primary)" stroke-width="2" fill="none"/>
+          <path d="M50 15 C54 10, 62 12, 58 20 C54 28, 50 35, 50 40 C50 35, 46 28, 42 20 C38 12, 46 10, 50 15 Z" fill="var(--gold)"/>
+        </svg>
+
+        <h1 class="page-hero-title">Our Exquisite <span>Services</span></h1>
+        <p>Explore Jamshedpur's most comprehensive pricing menu of luxurious self-care and professional parlor treatment. Select your dream indulgence.</p>
+      </div>
+    </section>
+
+    <!-- SERVICES DIRECTORY -->
+    <section class="services-menu section-padding" style="background: var(--bg-color);">
+      <div class="container">
+
+        <!-- Dynamic Category Filter Tabs -->
+        <div class="filter-tabs" data-target-grid="#services-menu-grid">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="hair">Hair</button>
+          <button class="tab-btn" data-filter="skin">Skin</button>
+          <button class="tab-btn" data-filter="nails">Nails</button>
+          <button class="tab-btn" data-filter="makeup">Makeup</button>
+          <button class="tab-btn" data-filter="body">Body</button>
+        </div>
+
+        <!-- 3-column desktop layout grid -->
+        <div id="services-menu-grid" class="services-grid">
+
+          <!-- ==========================================================
+               HAIR SECTION
+               ========================================================== -->
+          <!-- Card 1 - Haircut -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-100" data-category="hair">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M22 28 A8 8 0 1 0 22 44 A8 8 0 1 0 22 28 Z M22 32 A4 4 0 1 1 22 40 A4 4 0 1 1 22 32"/><path d="M42 28 A8 8 0 1 0 42 44 A8 8 0 1 0 42 28 Z M42 32 A4 4 0 1 1 42 40 A4 4 0 1 1 42 32"/><path d="M26 36 L44 14" stroke="var(--primary)" stroke-width="2.5"/><path d="M38 36 L20 14" stroke="var(--primary)" stroke-width="2.5"/></svg>
+              </div>
+              <div class="service-card-price">₹200+</div>
+            </div>
+            <h3 class="service-card-title">Couture Haircut</h3>
+            <p class="service-card-desc">Bespoke cuts tailoring to your face profile. Includes deep shampooing, conditioning, and professional blow-dry styling by our senior styler.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                45 mins
+              </div>
+              <a href="booking.html?service=haircut" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 2 - Hair Color -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-200" data-category="hair">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M32 10 C20 10, 16 20, 16 34 C16 48, 22 54, 32 54 C42 54, 48 48, 48 34 C48 20, 44 10, 32 10 Z" fill="none" stroke="var(--primary)" stroke-width="2.5"/><path d="M32 18 Q38 25 32 32 Q26 25 32 18" stroke="var(--gold)" stroke-width="1.5" fill="none"/></svg>
+              </div>
+              <div class="service-card-price">₹800+</div>
+            </div>
+            <h3 class="service-card-title">Global Hair Color</h3>
+            <p class="service-card-desc">Rich luxury hair coloring using international lines. Provides ultimate grey coverage and high-shine lavender and copper undertones.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                90 mins
+              </div>
+              <a href="booking.html?service=hair-color" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 3 - Keratin -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-300" data-category="hair">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M20 40 Q25 15 32 15 Q39 15 44 40" fill="none" stroke="var(--primary)" stroke-width="2.5"/><circle cx="32" cy="12" r="2" fill="var(--gold)"/><path d="M15 50 Q32 45 49 50" fill="none" stroke="var(--primary)" stroke-width="1.5"/></svg>
+              </div>
+              <div class="service-card-price">₹2500+</div>
+            </div>
+            <h3 class="service-card-title">Keratin Smooth</h3>
+            <p class="service-card-desc">Premium protein smoothing mask treatment. Seals cuticle layers, eliminating frizz completely and adding heavy volume locks.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                120 mins
+              </div>
+              <a href="booking.html?service=keratin" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 4 - Hair Spa -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-100" data-category="hair">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M14 48 C14 36 22 24 32 24 C42 24 50 36 50 48" fill="none" stroke="var(--primary)" stroke-width="2.5"/><circle cx="32" cy="14" r="4" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹500+</div>
+            </div>
+            <h3 class="service-card-title">Luxury Hair Spa</h3>
+            <p class="service-card-desc">Deep scalp massage and botanical steam therapy. Infuses essential oils into hair follicles to revive damaged dry textures.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                60 mins
+              </div>
+              <a href="booking.html?service=hair-spa" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 5 - Balayage -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-200" data-category="hair">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M15 15 C20 25 20 40 18 50 C26 40 32 40 49 45 L49 15 Z" fill="none" stroke="var(--primary)" stroke-width="2"/><circle cx="28" cy="20" r="2" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹3000+</div>
+            </div>
+            <h3 class="service-card-title">Couture Balayage</h3>
+            <p class="service-card-desc">Hand-painted dynamic color sweeps. Seamlessly transitions dark bases into premium caramel and honey gold highlights.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                150 mins
+              </div>
+              <a href="booking.html?service=balayage" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               SKIN SECTION
+               ========================================================== -->
+          <!-- Card 6 - Facial -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-300" data-category="skin">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M32 6 C18 6, 12 16, 12 30 C12 44, 20 58, 32 58 C44 58, 52 44, 52 30 C52 16, 46 6, 32 6 Z" fill="none" stroke="var(--primary)" stroke-width="2.5"/><ellipse cx="24" cy="26" rx="4" ry="2"/><ellipse cx="40" cy="26" rx="4" ry="2"/></svg>
+              </div>
+              <div class="service-card-price">₹400+</div>
+            </div>
+            <h3 class="service-card-title">Gold Hydra-Facial</h3>
+            <p class="service-card-desc">Multi-step advanced hydration. Exfoliates dead cells while infusing heavy peptide and rose serum boosters into skin pores.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                60 mins
+              </div>
+              <a href="booking.html?service=facial" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 7 - Clean-up -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-100" data-category="skin">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="none" stroke="var(--primary)" stroke-width="2.5"/><circle cx="32" cy="22" r="4" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹250+</div>
+            </div>
+            <h3 class="service-card-title">Herbal Clean-up</h3>
+            <p class="service-card-desc">Quick revitalizing face wash, scrub, and massage. Best for removing surface dirt and renewing natural brightness instantly.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                30 mins
+              </div>
+              <a href="booking.html?service=clean-up" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 8 - Bleach -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-200" data-category="skin">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M20 20 C20 15, 44 15, 44 20 L40 50 C40 54, 24 54, 24 50 Z" fill="none" stroke="var(--primary)" stroke-width="2"/><line x1="28" y1="28" x2="36" y2="28" stroke="var(--gold)" stroke-width="2"/></svg>
+              </div>
+              <div class="service-card-price">₹300+</div>
+            </div>
+            <h3 class="service-card-title">Oxy-Face Bleach</h3>
+            <p class="service-card-desc">Mild brightening treatment blending fine oxygen bubbles with skin tones. Lightens unwanted dark pigmentation safely.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                25 mins
+              </div>
+              <a href="booking.html?service=bleach" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 9 - De-tan -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-300" data-category="skin">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" stroke="var(--primary)" stroke-width="2" fill="none"/><line x1="32" y1="4" x2="32" y2="10" stroke="var(--gold)" stroke-width="2.5"/><line x1="32" y1="54" x2="32" y2="60" stroke="var(--gold)" stroke-width="2.5"/><line x1="4" y1="32" x2="10" y2="32" stroke="var(--gold)" stroke-width="2.5"/></svg>
+              </div>
+              <div class="service-card-price">₹350+</div>
+            </div>
+            <h3 class="service-card-title">Dermal De-tan Pack</h3>
+            <p class="service-card-desc">Anti-tan therapy incorporating pure lactic acid and kojic extracts. Safely pulls out deep Jamshedpur summer sunburn tones.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                30 mins
+              </div>
+              <a href="booking.html?service=de-tan" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 10 - Anti-acne -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-100" data-category="skin">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" stroke="var(--primary)" stroke-width="2.5" fill="none"/><path d="M22 38 Q32 45 42 38" stroke="var(--gold)" stroke-width="1.5" fill="none"/></svg>
+              </div>
+              <div class="service-card-price">₹500+</div>
+            </div>
+            <h3 class="service-card-title">Tea-Tree Anti-Acne</h3>
+            <p class="service-card-desc">Medicated deep clean facial. Uses organic tea-tree and salicylic extracts to clear active breakouts and cool irritated skin.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                50 mins
+              </div>
+              <a href="booking.html?service=anti-acne" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               NAILS SECTION
+               ========================================================== -->
+          <!-- Card 11 - Manicure -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-200" data-category="nails">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M20 50 L20 20 C20 15 28 15 28 20" fill="none" stroke="var(--primary)" stroke-width="2"/><circle cx="28" cy="12" r="2" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹250+</div>
+            </div>
+            <h3 class="service-card-title">Paraffin Manicure</h3>
+            <p class="service-card-desc">Deep nail filing, cuticle care, hand scrub, and warm paraffin wax coating to unlock incredibly soft hands and glowing nails.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                40 mins
+              </div>
+              <a href="booking.html?service=manicure" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 12 - Pedicure -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-300" data-category="nails">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M22 55 Q25 25 32 25 M32 25 Q35 25 38 55" fill="none" stroke="var(--primary)" stroke-width="2"/><circle cx="32" cy="18" r="2.5" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹300+</div>
+            </div>
+            <h3 class="service-card-title">Organic Spa Pedicure</h3>
+            <p class="service-card-desc">A deep-cleansing warm foot soak in sea salts, foot scrubbing, exfoliating mask, and targeted reflexology foot massage.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                50 mins
+              </div>
+              <a href="booking.html?service=pedicure" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 13 - Nail Art -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-100" data-category="nails">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M30 40 C32 30 45 35 40 15 L40 50 Z" stroke="var(--primary)" stroke-width="2" fill="none"/><circle cx="40" cy="15" r="2" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹150<span>/nail</span></div>
+            </div>
+            <h3 class="service-card-title">Custom Nail Art</h3>
+            <p class="service-card-desc">Unleash beautiful self-expression with custom hand-painted gold chrome strokes, glitter swirls, and fine floral nail patterns.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                15 mins
+              </div>
+              <a href="booking.html?service=nail-art" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 14 - Gel Nails -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-200" data-category="nails">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M22 22 L42 22 L38 52 L26 52 Z" fill="none" stroke="var(--primary)" stroke-width="2"/><line x1="28" y1="36" x2="36" y2="36" stroke="var(--gold)" stroke-width="2"/></svg>
+              </div>
+              <div class="service-card-price">₹800+</div>
+            </div>
+            <h3 class="service-card-title">High-Gloss Gel Nails</h3>
+            <p class="service-card-desc">Premium overlay extensions. Long-lasting, chip-resistant high-shine formulas cured under professional UV-LED hoods.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                60 mins
+              </div>
+              <a href="booking.html?service=gel-nails" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               MAKEUP SECTION
+               ========================================================== -->
+          <!-- Card 15 - Bridal Makeup -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-300" data-category="makeup">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M12 32 Q32 20 52 32 Q32 44 12 32 Z" fill="none" stroke="var(--primary)" stroke-width="2.5"/><path d="M22 30 Q32 36 42 30" fill="none" stroke="var(--gold)" stroke-width="1.5"/></svg>
+              </div>
+              <div class="service-card-price">₹8000+</div>
+            </div>
+            <h3 class="service-card-title">Velvet Bridal HD</h3>
+            <p class="service-card-desc">Royal bridal transformations. Includes deep airbrush setting, luxury lashes, hair accessories, and precise draping packages.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                180 mins
+              </div>
+              <a href="booking.html?service=bridal" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 16 - Party Makeup -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-100" data-category="makeup">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M20 45 L44 45 M32 20 L32 45" stroke="var(--primary)" stroke-width="2.5"/><circle cx="32" cy="12" r="3" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹2000+</div>
+            </div>
+            <h3 class="service-card-title">Party Styling & Makeup</h3>
+            <p class="service-card-desc">A premium glam finish. Designed specifically for weddings and events, highlighting eyes and sculpting facial features.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                75 mins
+              </div>
+              <a href="booking.html?service=party-makeup" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 17 - HD Makeup -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-200" data-category="makeup">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" stroke="var(--primary)" stroke-width="2.5" fill="none"/><line x1="10" y1="32" x2="54" y2="32" stroke="var(--gold)" stroke-width="1.5"/></svg>
+              </div>
+              <div class="service-card-price">₹3500+</div>
+            </div>
+            <h3 class="service-card-title">HD Editorial Finish</h3>
+            <p class="service-card-desc">Ultra-high-definition, cameras-ready application. Seamlessly covers fine lines and spots under heavy bright spotlights.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                90 mins
+              </div>
+              <a href="booking.html?service=hd-makeup" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 18 - Eye Makeup -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-300" data-category="makeup">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M12 32 Q32 14 52 32" stroke="var(--primary)" stroke-width="2.5" fill="none"/><circle cx="32" cy="30" r="6" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹800+</div>
+            </div>
+            <h3 class="service-card-title">Dramatic Eye Sculpt</h3>
+            <p class="service-card-desc">Signature cut-crease smokey eyes, precise liquid liner wings, and high-impact gold glitter shadow enhancements.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                30 mins
+              </div>
+              <a href="booking.html?service=eye-makeup" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- ==========================================================
+               BODY / WAX / THREAD SECTION
+               ========================================================== -->
+          <!-- Card 19 - Eyebrows -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-100" data-category="body">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M10 40 Q32 20 54 40" stroke="var(--primary)" stroke-width="2.5" fill="none"/></svg>
+              </div>
+              <div class="service-card-price">₹30</div>
+            </div>
+            <h3 class="service-card-title">Eyebrow Shaping</h3>
+            <p class="service-card-desc">Perfect organic thread shaping of your eyebrow arches. Fully customized to lift and match your natural eyes shape.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                10 mins
+              </div>
+              <a href="booking.html?service=eyebrows" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 20 - Waxing Full Arms -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-200" data-category="body">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M22 15 L42 15 L38 52 L26 52 Z" fill="none" stroke="var(--primary)" stroke-width="2"/></svg>
+              </div>
+              <div class="service-card-price">₹200</div>
+            </div>
+            <h3 class="service-card-title">Full Arms Wax</h3>
+            <p class="service-card-desc">Hygienic warm chocolate wax application. Safely removes fine root hair and gently hydrates skin layers to remove tan.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                30 mins
+              </div>
+              <a href="booking.html?service=full-arms-wax" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 21 - Waxing Full Body -->
+          <div class="glass-card service-card filterable-card reveal reveal-up delay-300" data-category="body">
+            <div class="service-card-header">
+              <div class="service-card-icon-wrapper">
+                <svg viewBox="0 0 64 64"><path d="M20 20 C20 10 44 10 44 20 L40 54 C40 58 24 58 24 54 Z" fill="none" stroke="var(--primary)" stroke-width="2"/><circle cx="32" cy="32" r="3" fill="var(--gold)"/></svg>
+              </div>
+              <div class="service-card-price">₹1200+</div>
+            </div>
+            <h3 class="service-card-title">Full Body Glow Wax</h3>
+            <p class="service-card-desc">Indulgent full body waxing treatment. Includes soothing lavender oil sanitizing and deep nourishing body lotion massage.</p>
+            <div class="service-card-footer">
+              <div class="service-card-duration">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                90 mins
+              </div>
+              <a href="booking.html?service=full-body-wax" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.75rem;">Book Now</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="container">
+        
+        <div class="footer-grid">
+          
+          <div class="footer-col">
+            <div class="footer-logo-wrapper">
+              <a href="index.html" class="logo" style="margin-bottom: 15px;">
+                <svg viewBox="0 0 100 100">
+                  <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+                  <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+                  <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+                  <circle cx="50" cy="28" r="3" fill="#d4a853" />
+                </svg>
+                VELVET<span>BLOOM</span>
+              </a>
+            </div>
+            <p>
+              Jamshedpur's premier ladies beauty lounge. We invite you to experience the finest standard of tailored beauty and professional self-care in Bistupur.
+            </p>
+            <div class="social-links">
+              <a href="https://facebook.com" target="_blank">f</a>
+              <a href="https://instagram.com" target="_blank">i</a>
+              <a href="https://youtube.com" target="_blank">y</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="booking.html">Booking</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Get in Touch</h3>
+            <ul class="contact-info-list">
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Velvet Bloom Salon,<br>Bistupur Main Road,<br>Near Central Park,<br>Jamshedpur – 831001</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>+91 98760 12345</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>hello@velvetbloom.in</span>
+              </li>
+              <li style="color: var(--gold);">
+                <svg viewBox="0 0 24 24" style="fill: var(--gold);"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                <span>Mon–Sat 9AM–8PM<br>Sun 10AM–6PM</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="copyright-bar">
+          <p>© 2026 <span>Velvet Bloom</span>. All Rights Reserved. Crafted for the modern woman.</p>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

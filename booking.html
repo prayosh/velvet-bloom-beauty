@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book your premium ladies parlor appointment at Velvet Bloom, Jamshedpur. Easy 3-step online scheduler for hair, skin, nails, makeups, and waxing.">
+  <title>Book Appointment | Velvet Bloom Ladies Parlour Jamshedpur</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="responsive.css">
+  
+  <style>
+    /* Booking Wizard Custom Layout */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 50px;
+    }
+    
+    @media screen and (max-width: 991px) {
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Wizard Steps Container */
+    .wizard-container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Progress bar indicators */
+    .booking-progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .booking-progress::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+    
+    .progress-step {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #17101c;
+      border: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      z-index: 5;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+    
+    .progress-step.active {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(232, 160, 191, 0.1);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .progress-step.completed {
+      border-color: var(--gold);
+      color: var(--bg-color);
+      background: var(--gold);
+      box-shadow: var(--shadow-gold-glow);
+    }
+    
+    /* Transition styles between steps */
+    .wizard-step-content {
+      display: none;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .wizard-step-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Step 1: Radio selection cards */
+    .service-selection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .service-radio-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 22px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .service-radio-card:hover {
+      border-color: rgba(232, 160, 191, 0.3);
+      background: rgba(232, 160, 191, 0.02);
+      transform: translateY(-2px);
+    }
+    
+    .service-radio-card.selected {
+      border-color: var(--primary);
+      background: rgba(232, 160, 191, 0.06);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .service-radio-card input[type="radio"] {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      accent-color: var(--primary);
+    }
+    
+    .radio-service-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--text);
+      font-weight: 500;
+      padding-right: 20px;
+    }
+    
+    .radio-service-price {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    
+    .radio-service-duration {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Step 2: Custom Pickers */
+    .picker-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 15px;
+      margin-bottom: 35px;
+    }
+    
+    .date-option-card {
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 15px 5px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    
+    .date-option-card:hover {
+      border-color: rgba(232, 160, 191, 0.3);
+    }
+    
+    .date-option-card.selected {
+      border-color: var(--primary);
+      background: rgba(232, 160, 191, 0.08);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .date-option-card .day-name {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    
+    .date-option-card .day-number {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    
+    .date-option-card .month-name {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+    
+    /* Time slots */
+    .time-slots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+      gap: 12px;
+    }
+    
+    .time-slot-option {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 12px 5px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    
+    .time-slot-option:hover:not(.booked) {
+      border-color: rgba(232, 160, 191, 0.3);
+      color: var(--primary);
+    }
+    
+    .time-slot-option.selected {
+      background: rgba(232, 160, 191, 0.08);
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    /* Step 3: Contact fields */
+    .details-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .input-field-wrapper {
+      position: relative;
+    }
+    
+    .input-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .booking-input {
+      width: 100%;
+      background: rgba(13, 10, 15, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 15px 20px;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+    
+    .booking-input:focus {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+      background: rgba(26, 18, 32, 0.8);
+    }
+    
+    .booking-textarea {
+      resize: none;
+      height: 100px;
+    }
+    
+    /* Inline error messages */
+    .inline-error-msg {
+      color: #e26d8f;
+      font-size: 0.8rem;
+      margin-top: 6px;
+      display: none;
+    }
+    
+    .global-step-error {
+      background: rgba(226, 109, 143, 0.08);
+      border: 1px solid rgba(226, 109, 143, 0.2);
+      border-radius: 10px;
+      padding: 15px 20px;
+      color: #e26d8f;
+      font-size: 0.85rem;
+      margin-bottom: 25px;
+      display: none;
+    }
+    
+    /* Right Side Receipt Summary Panel */
+    .summary-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
+      position: sticky;
+      top: 100px;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .summary-card.glow-flash {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .summary-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 12px;
+    }
+    
+    .summary-line-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .summary-line-label {
+      color: var(--text-muted);
+    }
+    
+    .summary-line-val {
+      color: var(--text);
+      font-weight: 500;
+      text-align: right;
+      max-width: 160px;
+    }
+    
+    .summary-total-bar {
+      border-top: 1px dashed var(--glass-border);
+      padding-top: 18px;
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .summary-total-label {
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+    
+    .summary-total-price {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    
+    /* Full screen Booking Success Overlay */
+    .success-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 10, 15, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 3000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    
+    .success-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .success-box {
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      padding: 40px;
+      border: 1px solid var(--glass-border);
+      border-radius: 25px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    /* Animated Blooming Rose Success SVG */
+    .success-bloom-svg {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px auto;
+      animation: bloomIn 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="header-nav">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 100 100">
+            <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+            <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+            <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+            <circle cx="50" cy="28" r="3" fill="#d4a853" />
+          </svg>
+          VELVET<span>BLOOM</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="booking.html" class="active">Booking</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="hamburger" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div class="mobile-drawer">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html" class="active">Booking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <svg class="sparkle-svg sparkle-1" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>
+        
+        <!-- Custom Calendar Vector with wrapped roses -->
+        <svg viewBox="0 0 100 100" class="hero-svg-icon">
+          <rect x="25" y="25" width="50" height="55" rx="5" fill="none" stroke="var(--primary)" stroke-width="2.5"/>
+          <line x1="35" y1="20" x2="35" y2="30" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="65" y1="20" x2="65" y2="30" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Calendar grids -->
+          <circle cx="38" cy="45" r="2.5" fill="var(--text-muted)"/>
+          <circle cx="50" cy="45" r="2.5" fill="var(--text-muted)"/>
+          <circle cx="62" cy="45" r="2.5" fill="var(--text-muted)"/>
+          <circle cx="38" cy="58" r="2.5" fill="var(--text-muted)"/>
+          <circle cx="50" cy="58" r="2.5" fill="var(--primary)"/>
+          <circle cx="62" cy="58" r="2.5" fill="var(--text-muted)"/>
+        </svg>
+
+        <h1 class="page-hero-title">Book Your <span>Appointment</span></h1>
+        <p>A seamless, secure multi-step reservation experience. Reserve your professional salon therapist and timing instantly.</p>
+      </div>
+    </section>
+
+    <!-- BOOKING SCHEDULER SECTION -->
+    <section class="booking-section section-padding" style="background: var(--bg-color);">
+      <div class="container">
+        
+        <div id="booking-wizard" class="booking-grid">
+          
+          <!-- LEFT PANEL: Multi-step Wizard contents -->
+          <div class="wizard-container">
+            
+            <!-- Progress Steps Bar -->
+            <div class="booking-progress">
+              <div class="progress-step active" data-step="1">1</div>
+              <div class="progress-step" data-step="2">2</div>
+              <div class="progress-step" data-step="3">3</div>
+            </div>
+
+            <!-- Global Error Banner -->
+            <div id="step-1-error" class="global-step-error"></div>
+            <div id="step-2-error" class="global-step-error"></div>
+
+            <!-- ==========================================================
+                 STEP 1: SELECT SERVICE
+                 ========================================================== -->
+            <div class="wizard-step-content active" data-step="1">
+              <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 25px; font-weight: 500;">Step 1: Select <span>Your Indulgence</span></h2>
+              
+              <div class="service-selection-grid">
+                
+                <!-- Haircut -->
+                <div class="service-radio-card" data-service-name="Couture Haircut" data-service-price="200" data-service-slug="haircut">
+                  <input type="radio" name="service-select" value="haircut">
+                  <div class="radio-service-title">Couture Haircut</div>
+                  <div class="radio-service-price">₹200+</div>
+                  <div class="radio-service-duration">45 mins</div>
+                </div>
+
+                <!-- Hair Color -->
+                <div class="service-radio-card" data-service-name="Global Hair Color" data-service-price="800" data-service-slug="hair-color">
+                  <input type="radio" name="service-select" value="hair-color">
+                  <div class="radio-service-title">Global Hair Color</div>
+                  <div class="radio-service-price">₹800+</div>
+                  <div class="radio-service-duration">90 mins</div>
+                </div>
+
+                <!-- Hair Spa -->
+                <div class="service-radio-card" data-service-name="Luxury Hair Spa" data-service-price="500" data-service-slug="hair-spa">
+                  <input type="radio" name="service-select" value="hair-spa">
+                  <div class="radio-service-title">Luxury Hair Spa</div>
+                  <div class="radio-service-price">₹500+</div>
+                  <div class="radio-service-duration">60 mins</div>
+                </div>
+
+                <!-- Hydra-Facial -->
+                <div class="service-radio-card" data-service-name="Gold Hydra-Facial" data-service-price="400" data-service-slug="facial">
+                  <input type="radio" name="service-select" value="facial">
+                  <div class="radio-service-title">Gold Hydra-Facial</div>
+                  <div class="radio-service-price">₹400+</div>
+                  <div class="radio-service-duration">60 mins</div>
+                </div>
+
+                <!-- Pedicure -->
+                <div class="service-radio-card" data-service-name="Organic Spa Pedicure" data-service-price="300" data-service-slug="pedicure">
+                  <input type="radio" name="service-select" value="pedicure">
+                  <div class="radio-service-title">Organic Spa Pedicure</div>
+                  <div class="radio-service-price">₹300+</div>
+                  <div class="radio-service-duration">50 mins</div>
+                </div>
+
+                <!-- Bridal -->
+                <div class="service-radio-card" data-service-name="Velvet Bridal HD" data-service-price="8000" data-service-slug="bridal">
+                  <input type="radio" name="service-select" value="bridal">
+                  <div class="radio-service-title">Velvet Bridal HD</div>
+                  <div class="radio-service-price">₹8000+</div>
+                  <div class="radio-service-duration">180 mins</div>
+                </div>
+
+              </div>
+
+              <div style="text-align: right; margin-top: 40px;">
+                <button class="btn btn-primary btn-wizard-next">Continue to Date</button>
+              </div>
+            </div>
+
+            <!-- ==========================================================
+                 STEP 2: PICK DATE & TIME
+                 ========================================================== -->
+            <div class="wizard-step-content" data-step="2">
+              <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 25px; font-weight: 500;">Step 2: Choose <span>Schedule</span></h2>
+
+              <!-- Date Picker grid (generated via booking.js starting from current day) -->
+              <h3 class="picker-section-title">Select Date</h3>
+              <div id="date-picker-grid" class="date-grid">
+                <!-- Custom buttons injected dynamically -->
+              </div>
+
+              <!-- Time Slot selector buttons -->
+              <h3 class="picker-section-title">Select Time Slot</h3>
+              <div id="time-slot-grid" class="time-slots-grid">
+                <div class="time-slot-option" data-time="9AM">9:00 AM</div>
+                <div class="time-slot-option" data-time="10AM">10:00 AM</div>
+                <div class="time-slot-option" data-time="11AM">11:00 AM</div> <!-- Pre-greyed booked -->
+                <div class="time-slot-option" data-time="12PM">12:00 PM</div>
+                <div class="time-slot-option" data-time="2PM">2:00 PM</div>
+                <div class="time-slot-option" data-time="3PM">3:00 PM</div>  <!-- Pre-greyed booked -->
+                <div class="time-slot-option" data-time="4PM">4:00 PM</div>
+                <div class="time-slot-option" data-time="5PM">5:00 PM</div>  <!-- Pre-greyed booked -->
+                <div class="time-slot-option" data-time="6PM">6:00 PM</div>
+                <div class="time-slot-option" data-time="7PM">7:00 PM</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 40px; gap: 15px;">
+                <button class="btn btn-secondary btn-wizard-prev">Back</button>
+                <button class="btn btn-primary btn-wizard-next">Continue to Details</button>
+              </div>
+            </div>
+
+            <!-- ==========================================================
+                 STEP 3: CUSTOMER DETAILS
+                 ========================================================== -->
+            <div class="wizard-step-content" data-step="3">
+              <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 25px; font-weight: 500;">Step 3: Contact <span>Information</span></h2>
+
+              <div class="details-form-group">
+                <!-- Name -->
+                <div class="input-field-wrapper">
+                  <label class="input-label" for="input-name">Full Name *</label>
+                  <input type="text" id="input-name" class="booking-input" placeholder="e.g. Priyadarshini Sen">
+                  <div id="error-name" class="inline-error-msg"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                  <!-- Phone -->
+                  <div class="input-field-wrapper">
+                    <label class="input-label" for="input-phone">Mobile Number (Jamshedpur) *</label>
+                    <input type="tel" id="input-phone" class="booking-input" placeholder="e.g. 9876543210">
+                    <div id="error-phone" class="inline-error-msg"></div>
+                  </div>
+                  <!-- Email -->
+                  <div class="input-field-wrapper">
+                    <label class="input-label" for="input-email">Email Address *</label>
+                    <input type="email" id="input-email" class="booking-input" placeholder="e.g. name@example.com">
+                    <div id="error-email" class="inline-error-msg"></div>
+                  </div>
+                </div>
+
+                <!-- Notes -->
+                <div class="input-field-wrapper">
+                  <label class="input-label" for="input-notes">Special Requests / Preferences</label>
+                  <textarea id="input-notes" class="booking-input booking-textarea" placeholder="e.g. Sensitive skin or hair highlights styling preferences..."></textarea>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 40px; gap: 15px;">
+                <button class="btn btn-secondary btn-wizard-prev">Back</button>
+                <button id="btn-submit-booking" class="btn btn-primary glow-pulse">Confirm Booking</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT PANEL: Floating summary receipt card -->
+          <div id="booking-summary-card" class="summary-card">
+            <h3 class="summary-title">Booking Summary</h3>
+            
+            <div class="summary-line-item">
+              <span class="summary-line-label">Service Selected</span>
+              <span id="summary-service" class="summary-line-val">Not Selected</span>
+            </div>
+            <div class="summary-line-item">
+              <span class="summary-line-label">Price starting from</span>
+              <span id="summary-price" class="summary-line-val">—</span>
+            </div>
+            <div class="summary-line-item">
+              <span class="summary-line-label">Date Selected</span>
+              <span id="summary-date" class="summary-line-val">Not Selected</span>
+            </div>
+            <div class="summary-line-item">
+              <span class="summary-line-label">Time Slot Selected</span>
+              <span id="summary-time" class="summary-line-val">Not Selected</span>
+            </div>
+
+            <div class="summary-total-bar">
+              <span class="summary-total-label">Subtotal</span>
+              <span id="summary-total" class="summary-total-price">—</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FULL SCREEN SUCCESS OVERLAY WITH BLOOMING ROSE -->
+    <div id="booking-success-overlay" class="success-overlay">
+      <div class="success-box">
+        
+        <!-- Animated Blooming Rose SVG vector -->
+        <svg class="success-bloom-svg" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <!-- Blooming core -->
+          <path d="M50 25 C60 15, 80 25, 65 45 C55 55, 50 70, 50 85 C50 70, 45 55, 35 45 C20 25, 40 15, 50 25 Z" fill="url(#roseGold)" />
+          <path d="M50 48 C44 38, 32 40, 38 52 C44 60, 50 65, 50 70 C50 65, 56 60, 62 52 C68 40, 56 38, 50 48 Z" fill="var(--gold)" />
+          <defs>
+            <linearGradient id="roseGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e8a0bf"/>
+              <stop offset="50%" stop-color="#ffeeb8"/>
+              <stop offset="100%" stop-color="#d4a853"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--gold); margin-bottom: 15px; font-weight: 500;">Booking Confirmed!</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 30px;">
+          Thank you for choosing Velvet Bloom Salon. Your premium beauty slot is successfully locked. We will send an SMS and email reminder shortly.
+        </p>
+
+        <!-- Dynamic Success Receipt Details -->
+        <div id="success-booking-detail" style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 20px; border-radius: 15px; color: var(--text); font-size: 0.9rem; line-height: 1.8; text-align: left; margin-bottom: 30px;">
+          <!-- Injected dynamically -->
+        </div>
+
+        <a href="index.html" class="btn btn-primary" style="width: 100%;">Return to Home</a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="container">
+        
+        <div class="footer-grid">
+          
+          <div class="footer-col">
+            <div class="footer-logo-wrapper">
+              <a href="index.html" class="logo" style="margin-bottom: 15px;">
+                <svg viewBox="0 0 100 100">
+                  <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+                  <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+                  <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+                  <circle cx="50" cy="28" r="3" fill="#d4a853" />
+                </svg>
+                VELVET<span>BLOOM</span>
+              </a>
+            </div>
+            <p>
+              Jamshedpur's premier ladies beauty lounge. We invite you to experience the finest standard of tailored beauty and professional self-care in Bistupur.
+            </p>
+            <div class="social-links">
+              <a href="https://facebook.com" target="_blank">f</a>
+              <a href="https://instagram.com" target="_blank">i</a>
+              <a href="https://youtube.com" target="_blank">y</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="booking.html">Booking</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Get in Touch</h3>
+            <ul class="contact-info-list">
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Velvet Bloom Salon,<br>Bistupur Main Road,<br>Near Central Park,<br>Jamshedpur – 831001</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>+91 98760 12345</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>hello@velvetbloom.in</span>
+              </li>
+              <li style="color: var(--gold);">
+                <svg viewBox="0 0 24 24" style="fill: var(--gold);"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                <span>Mon–Sat 9AM–8PM<br>Sun 10AM–6PM</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="copyright-bar">
+          <p>© 2026 <span>Velvet Bloom</span>. All Rights Reserved. Crafted for the modern woman.</p>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="main.js"></script>
+  <script src="animations.js"></script>
+  <script src="booking.js"></script>
+</body>
+</html>

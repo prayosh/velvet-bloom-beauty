@@ -1,0 +1,155 @@
+/* Responsive Design Breakpoints */
+
+/* ==========================================================================
+   Widescreen / Large Desktop (1280px and up)
+   ========================================================================== */
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* ==========================================================================
+   Medium Desktop / Widescreen (1024px to 1279px)
+   ========================================================================== */
+@media screen and (max-width: 1279px) {
+  .section-title {
+    font-size: 2.6rem;
+  }
+  
+  .footer-grid {
+    gap: 40px;
+  }
+}
+
+/* ==========================================================================
+   Tablet Devices (768px to 1023px)
+   ========================================================================== */
+@media screen and (max-width: 1023px) {
+  .section-padding {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .header-nav {
+    padding: 20px 0;
+  }
+  
+  .nav-links {
+    display: none; /* Hide standard links, hamburger will show */
+  }
+  
+  .hamburger {
+    display: block; /* Show hamburger button */
+  }
+  
+  /* Footer responsive grid */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  
+  .footer-col:first-child {
+    grid-column: span 2;
+  }
+}
+
+/* ==========================================================================
+   Mobile Devices (Landscape & Portrait up to 767px)
+   ========================================================================== */
+@media screen and (max-width: 767px) {
+  .section-padding {
+    padding: 60px 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-title-wrapper {
+    margin-bottom: 40px;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    font-size: 0.8rem;
+  }
+  
+  /* Footer responsive grid */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .footer-col:first-child {
+    grid-column: span 1;
+  }
+  
+  .footer-col h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+  
+  .page-hero {
+    padding: 140px 0 60px 0;
+  }
+  
+  .page-hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .page-hero p {
+    font-size: 0.9rem;
+  }
+  
+  .page-hero .hero-svg-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* Common structures: adjust padding, flex directions, margins */
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .lightbox-nav.prev {
+    left: -50px;
+  }
+  
+  .lightbox-nav.next {
+    right: -50px;
+  }
+  
+  .lightbox-content svg {
+    padding: 15px;
+  }
+  
+  .accordion-header {
+    padding: 18px 22px;
+    font-size: 0.9rem;
+  }
+  
+  .accordion-content-inner {
+    padding: 18px 22px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Very Small Mobile (375px or less) */
+@media screen and (max-width: 375px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  .mobile-drawer {
+    width: 250px;
+  }
+}

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View our portfolio of luxury hair styling, professional bridal makeups, custom nail art, and glowing skin transformations at Velvet Bloom Salon, Jamshedpur.">
+  <title>Our Gallery | Velvet Bloom Ladies Parlour Jamshedpur</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="responsive.css">
+  
+  <style>
+    /* Gallery Grid Custom Layout */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+    
+    .gallery-item-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      background: var(--card-bg);
+      aspect-ratio: 1;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .gallery-item-card:hover {
+      border-color: rgba(232, 160, 191, 0.4);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .gallery-item-card svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .gallery-item-card:hover svg {
+      transform: scale(1.08) translateZ(10px);
+    }
+    
+    /* Elegant Hover Zoom + Heart Overlay */
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 10, 15, 0.85);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    
+    .gallery-item-card:hover .gallery-overlay {
+      opacity: 1;
+    }
+    
+    .gallery-overlay-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .gallery-item-card:hover .gallery-overlay-icon {
+      transform: translateY(0);
+    }
+    
+    .gallery-overlay-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+    
+    .gallery-overlay-title {
+      font-family: var(--font-heading);
+      color: var(--text);
+      font-size: 1.2rem;
+      font-weight: 500;
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s;
+      text-align: center;
+    }
+    
+    .gallery-item-card:hover .gallery-overlay-title {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s;
+    }
+
+    .gallery-item-card:hover .gallery-overlay-tag {
+      transform: translateY(0);
+    }
+    
+    /* Underline sliding filters list */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 15px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 10px 22px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
+      z-index: 5;
+    }
+    
+    .tab-btn.active, .tab-btn:hover {
+      color: var(--primary);
+    }
+    
+    .tab-underline {
+      position: absolute;
+      bottom: -1px;
+      height: 2px;
+      background: var(--primary);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 0 10px var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="header-nav">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 100 100">
+            <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+            <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+            <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+            <circle cx="50" cy="28" r="3" fill="#d4a853" />
+          </svg>
+          VELVET<span>BLOOM</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="hamburger" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div class="mobile-drawer">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <!-- Floating sparkles -->
+        <svg class="sparkle-svg sparkle-1" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>
+        <svg class="sparkle-svg sparkle-2" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>
+
+        <svg viewBox="0 0 100 100" class="hero-svg-icon">
+          <circle cx="50" cy="50" r="25" fill="none" stroke="var(--primary)" stroke-width="2" stroke-dasharray="6 3"/>
+          <path d="M50 15 L50 25 M50 75 L50 85 M15 50 L25 50 M75 50 L85 50" stroke="var(--gold)" stroke-width="2"/>
+          <circle cx="50" cy="50" r="10" fill="var(--gold)"/>
+        </svg>
+
+        <h1 class="page-hero-title">Our Luxurious <span>Portfolio</span></h1>
+        <p>A hand-crafted visual display of beauty treatments, premium hairstyles, flawless skin glows, and detailed manicured nail art.</p>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section class="gallery-menu section-padding" style="background: var(--bg-color);">
+      <div class="container">
+
+        <!-- Filters Tabs -->
+        <div class="filter-tabs" data-target-grid="#gallery-grid">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="hair">Hair</button>
+          <button class="tab-btn" data-filter="makeup">Makeup</button>
+          <button class="tab-btn" data-filter="nails">Nails</button>
+          <button class="tab-btn" data-filter="skin">Skin</button>
+        </div>
+
+        <!-- 12 illustrated SVG cards layout -->
+        <div id="gallery-grid" class="gallery-grid">
+
+          <!-- 1. Flowing Hair Braid -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-100" data-category="hair">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M100 20 C110 30, 115 50, 110 70 C105 90, 120 110, 115 130 C110 150, 120 165, 115 180" />
+                <path d="M100 20 C90 35, 85 55, 90 75 C95 95, 80 115, 85 135 C90 155, 80 170, 85 180" stroke="var(--gold)" />
+                <circle cx="102" cy="70" r="3" fill="var(--gold)" />
+                <circle cx="88" cy="135" r="3" fill="var(--primary)" />
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Flowing French Braid</h4>
+                <span class="gallery-overlay-tag">Hair Styling</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 2. Geometric Almond Nails -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-200" data-category="nails">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M40 150 C40 100, 50 80, 50 50 Q55 35 60 50 L60 150" />
+                <path d="M80 150 C80 90, 95 70, 95 40 Q100 25 105 40 L105 150" stroke="var(--gold)" />
+                <path d="M120 150 C120 100, 135 85, 135 55 Q140 40 145 55 L145 150" />
+                <!-- Gold glitter triangles on nail tips -->
+                <path d="M52 40 L58 40 L55 35 Z" fill="var(--gold)" />
+                <path d="M97 28 L103 28 L100 23 Z" fill="var(--primary)" />
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Geometric Almond Tips</h4>
+                <span class="gallery-overlay-tag">Nails Art</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 3. Elegant Lashes -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-300" data-category="makeup">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M40 100 Q100 50 160 100" stroke-width="2"/>
+                <path d="M60 90 L50 70 M80 82 L75 55 M100 80 L100 50 M120 82 L125 55 M140 90 L150 70" stroke="var(--gold)" stroke-width="1.5" />
+                <ellipse cx="100" cy="115" rx="25" ry="12" stroke="var(--text-muted)"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Mauve Glam Lashes</h4>
+                <span class="gallery-overlay-tag">Makeup Finish</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 4. Botanic Skincare Glow -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-100" data-category="skin">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <circle cx="100" cy="100" r="70" stroke-dasharray="6 3"/>
+                <path d="M70 140 C70 90, 95 80, 95 60 C95 40, 115 50, 115 80 C115 110, 130 120, 130 140" stroke="var(--gold)"/>
+                <!-- leaf vectors -->
+                <path d="M140 80 Q160 70 150 90 Z" fill="var(--primary)"/>
+                <path d="M60 70 Q40 60 50 80 Z" fill="var(--gold)"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Botanic Hydra-Glow</h4>
+                <span class="gallery-overlay-tag">Skincare Glow</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 5. High Bun Hairstyle -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-200" data-category="hair">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <circle cx="100" cy="65" r="30" stroke="var(--gold)" stroke-width="2"/>
+                <path d="M70 145 C70 110, 85 95, 100 95 C115 95, 130 110, 130 145 Z" fill="#130b18" />
+                <!-- hairpins in bun -->
+                <line x1="120" y1="50" x2="140" y2="35" stroke="var(--primary)" stroke-width="2"/>
+                <circle cx="140" cy="35" r="3" fill="var(--gold)"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Luxury High-Bun</h4>
+                <span class="gallery-overlay-tag">Hair Styling</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 6. Gloss Pout lips -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-300" data-category="makeup">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M50 100 Q80 70 100 90 Q120 70 150 100 Q120 130 100 115 Q80 130 50 100 Z" fill="rgba(232,160,191,0.2)"/>
+                <!-- sparkles on lips -->
+                <circle cx="85" cy="98" r="1.5" fill="var(--gold)"/>
+                <circle cx="115" cy="102" r="2" fill="#fff"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Rose Gloss Pout</h4>
+                <span class="gallery-overlay-tag">Makeup Finish</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 7. Floral Nail art extensions -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-100" data-category="nails">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M60 160 C60 110, 75 90, 75 60 Q80 45 85 60 L85 160" />
+                <path d="M110 160 C110 100, 125 80, 125 50 Q130 35 135 50 L135 160" stroke="var(--gold)" />
+                <!-- tiny rose branch vector on nail middle -->
+                <path d="M78 80 Q82 75 80 70 M80 70 Q76 68 78 64" stroke="var(--gold)" stroke-width="1"/>
+                <circle cx="78" cy="64" r="2" fill="var(--primary)"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Hand-Painted Floral Nails</h4>
+                <span class="gallery-overlay-tag">Nails Art</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 8. Herbal Mask skincare -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-200" data-category="skin">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M100 30 Q50 30 50 100 Q50 170 100 170 Q150 170 150 100 Q150 30 100 30 Z" />
+                <ellipse cx="80" cy="85" rx="10" ry="5" />
+                <ellipse cx="120" cy="85" rx="10" ry="5" />
+                <path d="M90 125 Q100 135 110 125" stroke="var(--gold)"/>
+                <!-- leaf outlines around her face -->
+                <path d="M130 50 Q145 35 135 25 Q125 35 130 50 Z" fill="rgba(212,168,83,0.1)"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Organic Skin Mask</h4>
+                <span class="gallery-overlay-tag">Skincare Glow</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 9. Elegant Long Waves hairstyle -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-300" data-category="hair">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M100 30 C70 40, 55 70, 60 100 C65 130, 45 155, 55 180" />
+                <path d="M100 30 C130 40, 145 70, 140 100 C135 130, 155 155, 145 180" stroke="var(--gold)" />
+                <path d="M80 30 Q100 20 120 30" stroke="var(--gold)" stroke-width="2"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Couture Long Waves</h4>
+                <span class="gallery-overlay-tag">Hair Styling</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 10. Eyeliner Wing finish -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-100" data-category="makeup">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M40 95 Q90 60 160 85 L140 95 Q90 80 40 95 Z" fill="rgba(212,168,83,0.15)" stroke="var(--gold)"/>
+                <path d="M160 85 Q135 75 110 80" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- elegant golden dots -->
+                <circle cx="150" cy="80" r="1.5" fill="var(--gold)"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Double Wing Eyeliner</h4>
+                <span class="gallery-overlay-tag">Makeup Finish</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 11. Luxury Chrome nails -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-200" data-category="nails">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M30 160 L30 80 C30 75 36 73 36 65" />
+                <path d="M70 160 L70 65 C70 60 76 58 76 50" stroke="var(--gold)" />
+                <path d="M110 160 L110 75 C110 70 116 68 116 60" />
+                <!-- sparkle highlights -->
+                <path d="M36 65 L40 60 L36 55 L32 60 Z" fill="var(--primary)" />
+                <path d="M76 50 L80 45 L76 40 L72 45 Z" fill="var(--gold)" />
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Rose Chrome Overlays</h4>
+                <span class="gallery-overlay-tag">Nails Art</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 12. Candles facial massage -->
+          <div class="gallery-item-card filterable-card reveal reveal-up delay-300" data-category="skin">
+            <a href="#" class="gallery-trigger">
+              <svg viewBox="0 0 200 200" fill="none" stroke="var(--primary)" stroke-width="1.5">
+                <path d="M60 60 C40 80, 40 120, 60 140 C80 160, 120 160, 140 140 C160 120, 160 80, 140 60 Z" stroke-dasharray="8 4"/>
+                <circle cx="100" cy="100" r="30" stroke="var(--gold)"/>
+                <!-- massage wave vectors -->
+                <path d="M80 80 Q100 90 120 80 M80 120 Q100 110 120 120" stroke="var(--primary)" stroke-width="1"/>
+              </svg>
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-icon">
+                  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h4 class="gallery-overlay-title">Candlelit Skin Massage</h4>
+                <span class="gallery-overlay-tag">Skincare Glow</span>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CUSTOM JS LIGHTBOX (NO EXTERNAL LIBRARIES) -->
+    <div id="lightbox" class="lightbox">
+      <div class="lightbox-content">
+        <!-- Close button inside Content container -->
+        <button class="lightbox-close">
+          <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          Close
+        </button>
+        
+        <!-- Navigation Buttons -->
+        <button class="lightbox-nav prev" aria-label="Previous image">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="lightbox-nav next" aria-label="Next image">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+
+        <!-- Dynamic inline SVG is injected here by main.js -->
+        <div class="lightbox-content-placeholder"></div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="container">
+        
+        <div class="footer-grid">
+          
+          <div class="footer-col">
+            <div class="footer-logo-wrapper">
+              <a href="index.html" class="logo" style="margin-bottom: 15px;">
+                <svg viewBox="0 0 100 100">
+                  <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+                  <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+                  <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+                  <circle cx="50" cy="28" r="3" fill="#d4a853" />
+                </svg>
+                VELVET<span>BLOOM</span>
+              </a>
+            </div>
+            <p>
+              Jamshedpur's premier ladies beauty lounge. We invite you to experience the finest standard of tailored beauty and professional self-care in Bistupur.
+            </p>
+            <div class="social-links">
+              <a href="https://facebook.com" target="_blank">f</a>
+              <a href="https://instagram.com" target="_blank">i</a>
+              <a href="https://youtube.com" target="_blank">y</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="booking.html">Booking</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Get in Touch</h3>
+            <ul class="contact-info-list">
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Velvet Bloom Salon,<br>Bistupur Main Road,<br>Near Central Park,<br>Jamshedpur – 831001</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>+91 98760 12345</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>hello@velvetbloom.in</span>
+              </li>
+              <li style="color: var(--gold);">
+                <svg viewBox="0 0 24 24" style="fill: var(--gold);"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                <span>Mon–Sat 9AM–8PM<br>Sun 10AM–6PM</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="copyright-bar">
+          <p>© 2026 <span>Velvet Bloom</span>. All Rights Reserved. Crafted for the modern woman.</p>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

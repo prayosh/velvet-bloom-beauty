@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Velvet Bloom Salon in Bistupur, Jamshedpur. Contact us for bridal makeup bookings, hair treatments, and general parlor inquiries.">
+  <title>Contact Us & FAQ | Velvet Bloom Ladies Parlour Jamshedpur</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="responsive.css">
+  
+  <style>
+    /* Contact grid custom sub-styles */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+      align-items: start;
+      margin-top: 50px;
+    }
+    
+    @media screen and (max-width: 991px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    
+    /* Map Placeholder Custom Visual */
+    .map-placeholder-box {
+      width: 100%;
+      height: 250px;
+      border-radius: 15px;
+      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.02);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .map-placeholder-box svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="header-nav">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 100 100">
+            <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+            <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+            <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+            <circle cx="50" cy="28" r="3" fill="#d4a853" />
+          </svg>
+          VELVET<span>BLOOM</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+
+        <button class="hamburger" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div class="mobile-drawer">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <svg class="sparkle-svg sparkle-1" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>
+
+        <!-- Custom envelope with rose decorations -->
+        <svg viewBox="0 0 100 100" class="hero-svg-icon">
+          <rect x="20" y="30" width="60" height="40" rx="3" fill="none" stroke="var(--primary)" stroke-width="2.5"/>
+          <path d="M20 30 L50 55 L80 30" stroke="var(--primary)" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="55" r="5" fill="var(--gold)"/>
+        </svg>
+
+        <h1 class="page-hero-title">Get In <span>Touch</span></h1>
+        <p>Have questions about bridal customization or specialized skin packages? Connect with our Bistupur salon consultants today.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT DETAILS & FORM -->
+    <section class="contact-details-section section-padding" style="background: var(--bg-color);">
+      <div class="container">
+        
+        <div class="contact-grid">
+          
+          <!-- LEFT COLUMN: Inquiry form -->
+          <div class="glass-card reveal reveal-left" style="padding: 40px;">
+            <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 25px; font-weight: 500;">Send An <span>Inquiry</span></h2>
+            
+            <!-- Standard form simulation using div structures as required -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div>
+                  <label class="input-label" for="contact-name">Your Name *</label>
+                  <input type="text" id="contact-name" class="booking-input" placeholder="Name">
+                </div>
+                <div>
+                  <label class="input-label" for="contact-phone">Phone Number *</label>
+                  <input type="tel" id="contact-phone" class="booking-input" placeholder="Phone">
+                </div>
+              </div>
+
+              <div>
+                <label class="input-label" for="contact-email">Email Address *</label>
+                <input type="email" id="contact-email" class="booking-input" placeholder="Email">
+              </div>
+
+              <div>
+                <label class="input-label" for="contact-subject">Subject</label>
+                <select id="contact-subject" class="booking-input" style="appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\'%23d4a853\' height=\'24\' viewBox=\'0 0 24 24\' width=\'24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/></svg>'); background-repeat: no-repeat; background-position: right 15px center;">
+                  <option value="general">General Inquiry</option>
+                  <option value="bridal">Bridal Package customization</option>
+                  <option value="skin">Skin Package questions</option>
+                  <option value="cancel">Rescheduling / Cancellation</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="input-label" for="contact-msg">Message *</label>
+                <textarea id="contact-msg" class="booking-input" style="height: 120px; resize: none;" placeholder="Your message details..."></textarea>
+              </div>
+
+              <div style="text-align: right; margin-top: 15px;">
+                <button type="button" class="btn btn-primary glow-pulse" onclick="alert('Thank you! Your inquiry was sent successfully. We will get back to you shortly.')" style="width: 100%;">Send Message</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Contact cards & Custom map vector -->
+          <div class="reveal reveal-right" style="display: flex; flex-direction: column; gap: 30px;">
+            
+            <div class="glass-card" style="padding: 30px;">
+              <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold); margin-bottom: 20px; font-weight: 500;">Bistupur Lounge</h3>
+              
+              <ul class="contact-info-list" style="gap: 15px;">
+                <li>
+                  <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>Velvet Bloom Salon, Bistupur Main Road, Near Central Park, Jamshedpur – 831001</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  <span>+91 98760 12345</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  <span>hello@velvetbloom.in</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" style="fill: var(--gold);"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                  <span style="color: var(--gold);">Mon–Sat 9AM–8PM | Sun 10AM–6PM</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Custom Location Pin Map Vector representation -->
+            <div class="map-placeholder-box">
+              <svg viewBox="0 0 400 250">
+                <!-- abstract grid pathways representation -->
+                <path d="M0 50 L400 50 M0 150 L400 150 M100 0 L100 250 M250 0 L250 250" stroke="rgba(255,255,255,0.03)" stroke-width="3"/>
+                <path d="M0 100 Q150 70 400 130" stroke="rgba(212,168,83,0.1)" stroke-width="5" fill="none"/>
+                <!-- Central Park park representation block -->
+                <rect x="270" y="20" width="100" height="90" rx="10" fill="rgba(232,160,191,0.03)" stroke="rgba(232,160,191,0.08)" stroke-width="1.5"/>
+                <text x="320" y="65" fill="var(--text-muted)" font-size="11" letter-spacing="1" text-anchor="middle">Central Park</text>
+                
+                <!-- Bistupur road path -->
+                <line x1="200" y1="0" x2="200" y2="250" stroke="rgba(212,168,83,0.15)" stroke-width="6"/>
+                <text x="180" y="180" fill="var(--gold)" font-size="10" letter-spacing="1" transform="rotate(-90 180 180)">Bistupur Main Road</text>
+
+                <!-- Location Pin Glimmer ring -->
+                <circle cx="200" cy="100" r="22" fill="none" stroke="var(--primary)" stroke-width="1" opacity="0.3">
+                  <animate attributeName="r" values="10;25;10" dur="3s" repeatCount="indefinite" />
+                </circle>
+                
+                <!-- Location Pin representation -->
+                <g transform="translate(192, 84)">
+                  <path d="M8 0 C3.58 0, 0 3.58, 0 8 C0 14, 8 24, 8 24 C8 24, 16 14, 16 8 C16 3.58, 12.42 0, 8 0 Z" fill="var(--primary)"/>
+                  <circle cx="8" cy="8" r="3.5" fill="var(--bg-color)"/>
+                </g>
+                <rect x="135" y="118" width="130" height="25" rx="5" fill="var(--card-bg)" stroke="var(--primary)" stroke-width="1"/>
+                <text x="200" y="134" fill="var(--text)" font-size="9" font-weight="600" letter-spacing="0.5" text-anchor="middle">VELVET BLOOM SALON</text>
+              </svg>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- FAQ SECTION BELOW -->
+        <div style="margin-top: 100px;">
+          
+          <div class="section-title-wrapper reveal reveal-up">
+            <span class="section-subtitle">Clarifications</span>
+            <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+            <div class="title-divider">
+              <span class="line"></span>
+              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: var(--primary);"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>
+              <span class="line right"></span>
+            </div>
+          </div>
+
+          <!-- Silky dynamic Accordion panels -->
+          <div class="accordion-wrapper reveal reveal-up">
+            
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Do I need to book an appointment beforehand?
+                <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  Walk-ins are absolutely welcome at our Bistupur salon; however, to avoid any wait times and secure your dedicated senior hair stylist or skin therapist, we highly recommend booking an appointment online or calling us ahead of time.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Do you use premium parlor products?
+                <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  Yes, without exception. We believe your hair and skin deserve only the safest, most effective formulas. That is why we exclusively partner with standard premium international brands like L'Oréal Professional, Schwarzkopf, and OPI nails.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Is bridal package customization available?
+                <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  Absolutely! We are Jamshedpur's premier bridal salon. We offer complete customizable luxury packages starting at ₹12,000. These include pre-bridal glows, advanced facials, hair smoothening, professional HD makeups, draping, and customized nail art.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Do you offer home service inside Jamshedpur?
+                <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  We currently operate exclusively within our premium candles-lit Bistupur Main Road lounge to maintain the highest levels of hygiene and sensory pampering. However, our signature home service packages are coming soon in 2026!
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="accordion-item">
+              <button class="accordion-header">
+                How do I cancel or reschedule my beauty slot?
+                <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-content-inner">
+                  We understand your schedule can change. Please call or email us at least 24 hours prior to your scheduled beauty appointment to reschedule or cancel your slot without charge.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="container">
+        
+        <div class="footer-grid">
+          
+          <div class="footer-col">
+            <div class="footer-logo-wrapper">
+              <a href="index.html" class="logo" style="margin-bottom: 15px;">
+                <svg viewBox="0 0 100 100">
+                  <path d="M50 20 C60 10, 80 20, 65 40 C55 50, 50 65, 50 80 C50 65, 45 50, 35 40 C20 20, 40 10, 50 20 Z" />
+                  <path d="M50 45 C45 35, 30 38, 38 48 C45 55, 50 60, 50 65" stroke="#d4a853" stroke-width="2" fill="none" />
+                  <path d="M50 80 C55 75, 65 72, 60 82" stroke="#e8a0bf" stroke-width="2" fill="none" />
+                  <circle cx="50" cy="28" r="3" fill="#d4a853" />
+                </svg>
+                VELVET<span>BLOOM</span>
+              </a>
+            </div>
+            <p>
+              Jamshedpur's premier ladies beauty lounge. We invite you to experience the finest standard of tailored beauty and professional self-care in Bistupur.
+            </p>
+            <div class="social-links">
+              <a href="https://facebook.com" target="_blank">f</a>
+              <a href="https://instagram.com" target="_blank">i</a>
+              <a href="https://youtube.com" target="_blank">y</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="booking.html">Booking</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Get in Touch</h3>
+            <ul class="contact-info-list">
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Velvet Bloom Salon,<br>Bistupur Main Road,<br>Near Central Park,<br>Jamshedpur – 831001</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>+91 98760 12345</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>hello@velvetbloom.in</span>
+              </li>
+              <li style="color: var(--gold);">
+                <svg viewBox="0 0 24 24" style="fill: var(--gold);"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 14.3L11 12.5V7h1.5v4.78l3.72 2.22-.93 1.3z"/></svg>
+                <span>Mon–Sat 9AM–8PM<br>Sun 10AM–6PM</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="copyright-bar">
+          <p>© 2026 <span>Velvet Bloom</span>. All Rights Reserved. Crafted for the modern woman.</p>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="main.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>
